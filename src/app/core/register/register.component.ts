@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit{
     private registerService:RegisterService)
     {}
     registerForm!:FormGroup;
-   
+    passwordsignUpHidden=true;
 
      ngOnInit(): void {
       this.createRegisterForm();
@@ -41,5 +41,9 @@ export class RegisterComponent implements OnInit{
         alert(response.firstName+" "+response.lastName+" adlı kullanıcı başarıyla eklendi");
        });
     }
+  
 
+    SignUpPasswordVisibility() {
+      this.passwordsignUpHidden = !this.passwordsignUpHidden;
+    }
 }

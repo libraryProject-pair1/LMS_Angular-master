@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from '../../services/login.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { LoginResponse } from '../../models/AccessToken';
 import { TokenService } from '../../services/token.service';
@@ -15,57 +15,39 @@ import { Response } from '../../../features/models/response';
 import { JWT_MAIL } from '../../constants/jwtAttributes';
 import { AuthService } from '../../services/Auth.service';
 import { LayoutComponent } from "../../../shared/layout/layout.component";
+import { RegisterService } from '../../services/register.service';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatButtonModule, MatCardModule, LayoutComponent]
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule]
 })
 export class LoginComponent implements OnInit {
+  passwordsignInHidden = true;
+  //passwordsignUpHidden=true;
+
   constructor(
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
     private tokenService: TokenService,
     private memberService: MemberService,
-    private authService:AuthService
+    private authService:AuthService,
+ 
   ) {}
+
 
   ngOnInit(): void {
     this.getMembers();
-    this.showPassword();
-    this.applyWaves();
-  }
-  showPassword() {
-    const checkbox = document.querySelector("show > input[type=checkbox]") as HTMLInputElement;
     
-  const pswd = document.querySelector("input[type=password]");
-
-  // Elemanlar null değilse işlemleri gerçekleştir
-  if (checkbox && pswd) {
-    checkbox.addEventListener("input", (e) => {
-      // pswd ve checkbox null değilse ve pswd bir HTMLInputElement ise işlemleri gerçekleştir
-      if (pswd instanceof HTMLInputElement) {
-        pswd.type = checkbox.checked ? "text" : "password";
-      } else {
-        console.error("Password input element not found or incorrect type!");
-      }
-    });
-  } else {
-    console.error("Checkbox or password input element not found!");
-  }
-  }
-  applyWaves() {
-    const waves = document.querySelectorAll(".wave");
-    waves.forEach((wave: any) => {
-      for (let i = 0; i < wave.children.length; i++)
-        wave.children[i].style.transitionDelay = `${i * 0.1}s`;
-    });
+    
   }
 
-  userMailFound: boolean = false;
+
+
+   userMailFound: boolean = false;
   userMail: string = '';
   emailList: string[] = [];
   memberList: Member[] = [];
@@ -132,4 +114,14 @@ export class LoginComponent implements OnInit {
       });
     });
   }
+
+  SignInPasswordVisibility() {
+    this.passwordsignInHidden = !this.passwordsignInHidden;
+  }
+  /* SignUpPasswordVisibility() {
+    this.passwordsignUpHidden = !this.passwordsignUpHidden;
+  } */
+
+ 
+
 }

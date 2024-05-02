@@ -1,31 +1,32 @@
-<app-layout></app-layout>
-<div class="container">
-<form [formGroup]="loginForm">
-  <h1>Login account</h1>
-  <div>
-    <input id="email" type="email" formControlName="email" placeholder="" required />
-    <label for="email" class="wave">
-      <span>E</span>
-      <span>m</span>
-      <span>a</span>
-      <span>i</span>
-      <span>l</span>
-    </label>
-  </div>
-  <div>
-    
-    <input id="pswd" type="password" formControlName="password" placeholder="" required minlength="8" />
-    <label for="pswd" class="wave">
-      <span>P</span>
-      <span>a</span>
-      <span>s</span>
-      <span>s</span>
-      <span>w</span>
-      <span>o</span>
-      <span>r</span>
-      <span>d</span>
-    </label>
-  </div>
-  <button type="reset" (click)="onLogin()">Login</button>
-  
-</form></div>
+
+
+<div class="animate__animated  animate__slideInRight">
+	<div class="main mt-5">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="login">
+				<form [formGroup]="loginForm">
+					<label for="chk" aria-hidden="true"><img src="/assets/img/userm.png" width="50px;" alt=""></label>
+          <div class="form-group mb-4">
+            <h5 for="exampleInputEmail1" class="pb-2">Email: </h5>
+            <input formControlName="email" type="email" class="form-control height-4 px-4 " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="account@account.com">
+            <small id="emailHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="password-container">
+              <div class="form-group mb-4">
+              <h5 for="exampleInputPassword1" class="pb-2">Şifre:</h5>
+              <input formControlName="password" [type]="passwordsignInHidden ? 'password' : 'text'" class="form-control" id="exampleInputPassword1" placeholder="******">
+              <div class="eye-icon" (click)="SignInPasswordVisibility()">
+                <span *ngIf="passwordsignInHidden" ><i class="bi bi-eye-slash"></i></span>
+                <span *ngIf="!passwordsignInHidden" ><i class="bi bi-eye"></i></span>
+              </div>
+            </div>
+           </div>
+			
+           <button routerLink="/homepage" type="submit" class="btn btn-outline-danger" (click)="onLogin()" > Giriş </button>
+
+           <button routerLink="/register" class="btnm">Hesap Oluştur</button>
+				</form>
+			</div>
+    </div>
+
