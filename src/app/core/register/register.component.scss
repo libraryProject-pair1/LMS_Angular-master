@@ -114,23 +114,12 @@ input{
 #chk:checked ~ .login label{
 	transform: scale(.6);
 }
-.password-container {
-    position: relative;
-   
 
-    .eye-icon {
-    position: absolute;
-    top: 70%;
-    right: 100px; /* veya uygun bir mesafe belirleyin */
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  }
 
   .main {
 	--angle: 0deg;
 	width: 400px;
-	height: 600px;
+	height: 620px;
 	border: 10px solid;
 	border-image: linear-gradient(var(--angle),#ebbec2,#b13636) 1;
 	animation: 2s rotate linear infinite;
@@ -147,4 +136,17 @@ input{
 	syntax: '<angle>';
 	initial-value: 0deg;
 	inherits: false;
+  }
+
+  .password-container {
+    position: relative;
+   
+ .eye-icon {
+    position: absolute;
+    top: 70%;
+    right: 100px; /* veya uygun bir mesafe belirleyin */
+    transform: translateY(-80%);
+    cursor: pointer;
+	
+  }
   }
