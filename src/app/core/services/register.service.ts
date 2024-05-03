@@ -12,7 +12,7 @@ export class RegisterService {
   
   apiUrl: string = "http://localhost:5278/api/Members";
 
-  Register(registerModel:Register):Observable<Register>{
-    return this.httpClient.post<any>(this.apiUrl,registerModel);
+  Rgstr(registerModel:Register):Observable<Register>{
+    return this.httpClient.post<Register>(this.apiUrl,registerModel);
   }
 }

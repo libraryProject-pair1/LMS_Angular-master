@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterService } from '../services/register.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
-import { Register } from '../models/register';
+import { BaseInputErrorsComponent } from '../components/base-input-errors/base-input-errors.component';
+import { BaseInputComponent } from '../components/base-input/base-input.component';
+
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,RouterModule,BaseInputErrorsComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -30,20 +32,24 @@ export class RegisterComponent implements OnInit{
         firstName:['',[Validators.required]],
         lastName:['',Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required]],
+        password: ['', [Validators.required, Validators.minLength(6),]],
        });
     }
-    onRegister(){
-      this.registerService.Register(this.registerForm.value).subscribe(response=>{
-        
-        console.log(response);  
-        console.log("Başarıyla eklendi.");
-        alert(response.firstName+" "+response.lastName+" adlı kullanıcı başarıyla eklendi");
-       });
-    }
+   onRegister(){
+    this.registerForm.markAsDirty();
+    this.registerService.Rgstr(this.registerForm.value).subscribe(response=>{
+      console.log(response);
+      console.log("Başarıyla Eklendi");
+      alert(response.firstName+""+ response.lastName+ "adlı kullanıcı eklendi.");
+    })
+   }
   
 
     SignUpPasswordVisibility() {
       this.passwordsignUpHidden = !this.passwordsignUpHidden;
+    }
+
+    clear(){
+     localStorage.clear() 
     }
 }

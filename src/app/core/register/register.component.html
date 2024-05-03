@@ -2,44 +2,47 @@
 <div class="main mt-3 ">  	
     <input type="checkbox" id="chk" aria-hidden="true">
 
-        <div class="signup">
-            <label for="chk" aria-hidden="true"><img src="/assets/img/form.png" width="50px;" alt=""></label>
+        
+            <label for="chk" aria-hidden="true"><img src="/assets/img/check.png" width="50px;" alt=""></label>
             <form [formGroup]="registerForm">
                 <div class="mb-3">
-                    <h5>Ad:</h5> 
-                    <input type="text" placeholder="Ad" formControlName="firstName" class="form-control"/>
+                    <h5 >Adınız:</h5>
+                    <input type="text"  formControlName="firstName" class="form-control"/>
+                   <myinput-errors class="aaa" fieldName="firstName" />
+                   
                 </div>
-               
                 <div class="mb-3">
-                    <h5>Soyad:</h5>
-                    <input type="text" placeholder="Soyad" formControlName="lastName" class="form-control"/>
+                    <h5>Soyadınız:</h5>
+                    <input type="text"  formControlName="lastName" class="form-control"/>
+                    <myinput-errors class="aaa" fieldName="lastName" />
                 </div>
-               
                 <div class="mb-3">
-                   <h5> E-mail:</h5>
-                    <input type="email" placeholder="Email" formControlName="email" class="form-control"/>
+                    <h5>E-mail:</h5>
+                    <input type="email"  formControlName="email" class="form-control" />
+                  <myinput-errors class="aaa" fieldName="email" />  
                 </div>
-               <!--  <small *ngIf="registerForm.get('email')?.hasError('required') " class="form-text text-muted">
-                    Email zounludur
-                </small> -->
+              
                 <div class="password-container">
-                <div class="form-group mb-4">
-                    <h5 for="exampleInputPassword2" class="pb-2">Şifre:</h5>
-                    <input formControlName="password" [type]="passwordsignUpHidden ? 'password' : 'text'" class="form-control" id="exampleInputPassword1" placeholder="******">
+                    <div class="form-group mb-4">
+                    <h5 for="exampleInputPassword1" class="pb-2">Şifre:</h5>
+                    <input formControlName="password" [type]="passwordsignUpHidden ? 'password' : 'text'" class="form-control" placeholder="******">
+                    <myinput-errors class="aaa" fieldName="email" />
                     <div class="eye-icon" (click)="SignUpPasswordVisibility()">
                       <span *ngIf="passwordsignUpHidden" ><i class="bi bi-eye-slash"></i></span>
                       <span *ngIf="!passwordsignUpHidden" ><i class="bi bi-eye"></i></span>
                     </div>
-                  </div></div>
-                <small *ngIf="registerForm.get('password')?.hasError('minlength') "  class="form-text text-muted">
-                    Ürün adı en az iki karakter olmalıdır
-                </small>
-                <button class="clr mt-4" [disabled]="!registerForm.valid" (click)="onRegister()">Kayıt Ol</button>
-
+                  </div>
+                 </div>
+                
             </form>
+               
+
+         
+            
+            <button class="clr mt-4" [disabled]="!registerForm.valid" (click)="onRegister()">Kayıt Ol</button>
     </div>
     </div>
-</div>
+
      
            
  

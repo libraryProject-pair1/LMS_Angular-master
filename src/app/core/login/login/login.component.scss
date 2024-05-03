@@ -34,13 +34,16 @@ body{
 h5{
    
 	font-size:15px;
-	justify-content:center;
-	display:grid;
-	//margin: 60px;
+	//justify-content:center;
+	position: relative;
+	left:70px;
+	//display:grid;
+	margin: 8px;
 	//font-weight: bold;
-	cursor: pointer;
-	transition: .5s ease-in-out;
-	margin: 3px 0;
+	//cursor: pointer;
+	//transition: .5s ease-in-out;
+	font-family:Arial, Helvetica, sans-serif;
+	
 }
 label{
 	color: #271d1d;
@@ -64,6 +67,11 @@ input{
 	outline: none;
 	border-radius: 5px;
 	
+}
+.aaa{
+	
+	position: relative;
+	left:74px;
 }
 
 	input:focus{

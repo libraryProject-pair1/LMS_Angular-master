@@ -16,13 +16,14 @@ import { JWT_MAIL } from '../../constants/jwtAttributes';
 import { AuthService } from '../../services/Auth.service';
 import { LayoutComponent } from "../../../shared/layout/layout.component";
 import { RegisterService } from '../../services/register.service';
+import { BaseInputErrorsComponent } from '../../components/base-input-errors/base-input-errors.component';
 
 @Component({
     selector: 'app-login',
     standalone: true,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule]
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule,BaseInputErrorsComponent]
 })
 export class LoginComponent implements OnInit {
   passwordsignInHidden = true;

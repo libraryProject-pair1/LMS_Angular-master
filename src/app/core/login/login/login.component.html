@@ -8,14 +8,15 @@
 				<form [formGroup]="loginForm">
 					<label for="chk" aria-hidden="true"><img src="/assets/img/userm.png" width="50px;" alt=""></label>
           <div class="form-group mb-4">
-            <h5 for="exampleInputEmail1" class="pb-2">Email: </h5>
-            <input formControlName="email" type="email" class="form-control height-4 px-4 " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="account@account.com">
-            <small id="emailHelp" class="form-text text-muted"></small>
+            <h5  class="pb-2">Email: </h5>
+            <input formControlName="email" type="email" class="form-control height-4 px-4 "  placeholder="account@account.com">
+            <myinput-errors class="aaa" fieldName="email" /> 
             </div>
             <div class="password-container">
               <div class="form-group mb-4">
               <h5 for="exampleInputPassword1" class="pb-2">Şifre:</h5>
-              <input formControlName="password" [type]="passwordsignInHidden ? 'password' : 'text'" class="form-control" id="exampleInputPassword1" placeholder="******">
+              <input formControlName="password" [type]="passwordsignInHidden ? 'password' : 'text'" class="form-control" placeholder="******">
+              <myinput-errors class="aaa" fieldName="email" />
               <div class="eye-icon" (click)="SignInPasswordVisibility()">
                 <span *ngIf="passwordsignInHidden" ><i class="bi bi-eye-slash"></i></span>
                 <span *ngIf="!passwordsignInHidden" ><i class="bi bi-eye"></i></span>
