@@ -46,9 +46,7 @@ export class LoginComponent implements OnInit {
     
   }
 
-
-
-   userMailFound: boolean = false;
+  userMailFound: boolean = false;
   userMail: string = '';
   emailList: string[] = [];
   memberList: Member[] = [];
@@ -93,7 +91,7 @@ export class LoginComponent implements OnInit {
         console.log("userMail, emailList içinde bulunuyor.");
         for (let i = 0; i < this.memberList.length; i++) {
           if (this.memberList[i].email == this.userMail) {
-            console.log("Şuan sistemde giriş yapmış kullanıcı:", this.userMail);
+            console.log("Şu an sistemde giriş yapmış kullanıcı:", this.userMail);
             this.authService.loggedInMember=this.memberList[i];
             console.log("Tüm bilgi:",this.authService.loggedInMember);
           }

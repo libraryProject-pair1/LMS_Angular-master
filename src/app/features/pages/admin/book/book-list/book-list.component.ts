@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { BookService } from "../../../../services/book.service";
@@ -12,6 +12,9 @@ import { Publisher } from "../../../../models/publisher";
 import { RouterLink, RouterModule } from "@angular/router";
 import { FilterlistPipe } from "../../../../../core/pipes/filterlist.pipe";
 import { FilterBookListForCategoryPipe } from "../../../../../core/pipes/FilterBookListForCategory.pipe";
+import { AuthorService } from "../../../../services/author.service";
+import { Author } from "../../../../models/Author";
+import { BookUpdateComponent } from "../book-update/book-update.component";
 
 
 
@@ -25,13 +28,24 @@ import { FilterBookListForCategoryPipe } from "../../../../../core/pipes/FilterB
     imports: [CommonModule, FormsModule, RouterLink, RouterModule,FilterlistPipe,FilterBookListForCategoryPipe]
 })
 export class BookListComponent implements OnInit{
+  
+  
+
   bookList:GetAllBook[] = [];
   categoryList:Category[]=[];
   publisherList:Publisher[]=[];
+  authorList: Author[]=[];
   today: Date = new Date();
   searchKey : string = ' ';
-  constructor(private bookService : BookService,private categoryService:CategoryService,private publisherService:PublisherService){}
+
+  constructor(private bookService : BookService,private categoryService:CategoryService,private publisherService:PublisherService,private authorService: AuthorService)
+  {
+    
+  }
+
+
   ngOnInit(): void {
+    this.getAuthors();
     this.getCategories();
     this.getPublishers();
     this.getBooks();
@@ -46,14 +60,18 @@ export class BookListComponent implements OnInit{
         console.log("BookList:",this.bookList)
         this.bookList.forEach(book=>{
           console.log(book.name);
-          let categoryId=book.categoryId
+          let categoryId=book.categoryId;
           let publisherId=book.publisherId;
+          let authorId=book.authorId;
           const category=this.categoryList.find(category=>category.id===categoryId);
           const publisher=this.publisherList.find(publisher=>publisher.id===publisherId);
-          if(category && publisher){
+          const author=this.authorList.find(author=>author.id===authorId);
+           
+          if(category && publisher && author){
             
             book.categoryName=category.categoryName;
             book.publisherName=publisher.name;
+            book.authorName=author.name;
           }
         })
       },
@@ -61,6 +79,21 @@ export class BookListComponent implements OnInit{
         console.log('backendden hatalı cevap geldi.',error);
       },
       complete: () =>{
+        console.log('backend isteği sonlandı.');
+      }
+    });
+  }
+
+  getAuthors(){
+    this.authorService.getAllAuthors().subscribe({
+      next:(response:ResponseModel<Author>)=>{
+        console.log("Backendten cevap geldi:", response);
+        this.authorList=response.items;
+      },
+      error: (error)=>{
+        console.log('backendten hatalı cevap geldi.');
+      },
+      complete:()=>{
         console.log('backend isteği sonlandı.');
       }
     });

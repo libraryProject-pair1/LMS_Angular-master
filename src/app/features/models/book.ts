@@ -9,6 +9,9 @@ export interface Book {
     language:string;
     description:string;
     unitsInStock:number;
+    publisherName:string;
+    authorName:string;
+    categoryName:string;
 
     
 }

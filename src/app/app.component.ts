@@ -6,6 +6,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { LayoutComponent } from './shared/layout/layout.component';
 import { HomepageComponent } from './shared/homepage/homepage.component';
+import { LoadingComponent } from "./core/components/loading/loading.component";
 
 
 
@@ -15,7 +16,7 @@ import { HomepageComponent } from './shared/homepage/homepage.component';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, BookListComponent, ToastrModule, LayoutComponent]
+    imports: [RouterOutlet, BookListComponent, ToastrModule, LayoutComponent, LoadingComponent]
 })
 export class AppComponent {
   

@@ -7,17 +7,19 @@
                 </a>
               
                 <ul class="fd dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><img src="assets/img/education.png" alt=""> Akademik  </a></li>
-                    <li><a class="dropdown-item" href="#">Bilim</a></li>
-                    <li><a class="dropdown-item" href="#">Ekonomi</a></li>
-                    <li><a class="dropdown-item" href="#">Psikoloji</a></li>
-                    <li><a class="dropdown-item" href="#">Edebiyat</a></li>
-                    <li><a class="dropdown-item" href="#">Sosyoloji</a></li>
-                    <li><a class="dropdown-item" href="#">Sanat</a></li>
-                    <li><a class="dropdown-item" href="#">Yabancı Dil</a></li>
+                    <li *ngFor="let category of categories"><a class="dropdown-item" routerLink="/books/category/{{category.id}}" (click)="setCurrentCategory(category)" ><img src="assets/img/education.png" alt=""> {{category.categoryName}} </a></li>
+                    
     
                 </ul>
-                <a class=" nav-link me-2"  href="#">Kitaplar</a>
+                <a class="first btn btn-secondary dropdown-toggle me-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                    <i class="bi bi-bookmark-plus-fill"></i> Yazarlar
+                </a>
+                <ul class="fd dropdown-menu">
+                    <li *ngFor="let author of authors"><a class="dropdown-item" routerLink="/books/author/{{author.id}}" (click)="setCurrentAuthor(author)" ><img src="assets/img/education.png" alt=""> {{author.name}} </a></li>
+                    
+    
+                </ul>
+                <a class=" nav-link me-2"  routerLink="/books">Kitaplar</a>
                 <a class=" nav-link" href="#">Yazarlar</a>
             </div>
     

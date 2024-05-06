@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomepageComponent } from './shared/homepage/homepage.component';
 import { BookListComponent } from './features/pages/admin/book/book-list/book-list.component';
-
 import { AddBookComponent } from './features/pages/admin/book/add-book/add-book.component';
 import { LoginComponent } from './core/login/login/login.component';
 import { RegisterComponent } from './core/register/register.component';
@@ -19,6 +18,11 @@ import { CategoryUpdateComponent } from './features/pages/admin/category/categor
 import { AddAuthorComponent } from './features/pages/admin/author/add-author/add-author.component';
 import { EditAuthorComponent } from './features/pages/admin/author/edit-author/edit-author.component';
 import { UpdateAuthorComponent } from './features/pages/admin/author/update-author/update-author.component';
+import { UserAccountComponent } from './features/pages/user-account/user-account.component';
+import { UserEditComponent } from './features/pages/user-account/user-edit/user-edit.component';
+import { BookListForMembersComponent } from './features/pages/book/book-list-for-members/book-list-for-members.component';
+import { BookListForAuthorsComponent } from './features/pages/book/book-list-for-authors/book-list-for-authors.component';
+import { BookListForIsbnComponent } from './features/pages/book/book-list-for-isbn/book-list-for-isbn.component';
 
 
 export const routes: Routes = [
@@ -27,7 +31,19 @@ export const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'members',component:MemberListComponent},
-  {path:'homepage/:id/profile',component:ProfileComponent},
+  {path:'homepage/:id/profile',component:ProfileComponent,canActivate:[authGuard]},
+   {path:"books/category/:categoryId",component:BookListForMembersComponent},
+  {path:"getBooksForMembers",component:BookListForMembersComponent},
+  {path:"books/author/:authorId",component:BookListForAuthorsComponent},
+  {path:"getBooksForIsbnFilter",component:BookListForIsbnComponent},
+
+  
+  
+  {path:"homepage/userprofile/:id",component:UserAccountComponent,
+  children:[
+    {path:"edituser",component:UserEditComponent}
+  ]
+},
 
   
   {path:'admin',component:AdminComponent,canActivate:[authGuard],data:{requiredRoles:['Admin']},

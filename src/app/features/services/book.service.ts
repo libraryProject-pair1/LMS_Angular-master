@@ -6,11 +6,14 @@ import { ResponseModel } from '../models/responseModel';
 
 import { Response } from '../models/response';
 import { GetAllBook } from '../models/getAllBook';
+import { SingleResponseModel } from '../models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
+
+ // loadedBook: GetAllBook | null=null;
   
 
   constructor(private httpClient:HttpClient) { }
@@ -44,4 +47,22 @@ export class BookService {
   deleteBook(bookId:number){
     return this.httpClient.delete('http://localhost:5278/api/Books/'+bookId);
   }
+  getBooksByCategoryId(categoryId:number):Observable<Response<Book>>{
+    const token = localStorage.getItem('Token'); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.get<Response<Book>>(this.apiUrl+'/getbooksbycategoryid?PageIndex=0&PageSize=20&categoryId='+categoryId,{headers:headers})
+  }
+
+  getBooksByAuthorId(authorId:number):Observable<Response<Book>>{
+    const token = localStorage.getItem('Token'); 
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.get<Response<Book>>(this.apiUrl+'/getbooksbyauthorid?PageIndex=0&PageSize=20&authorId='+authorId,{headers:headers})
+  
+  }
+
+
 }
